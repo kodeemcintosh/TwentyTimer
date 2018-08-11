@@ -1,5 +1,5 @@
 
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -7,8 +7,8 @@ let mainWindow
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    title: 'DevTimer',
-    icon: __dirname + '/img/icon.png',
+    title: 'Twenty Timer',
+    // icon: __dirname + '/img/icon.png',
     width: 400,
     height: 300});
   // mainWindow.backgroundColor();
@@ -37,11 +37,12 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
 
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
 });
 
-app.on('alert', function () {
+ipcMain.on('alert', function () {
+  mainWindow = null;
   alert = new BrowserWindow({center: true, resizable: false, width: 200, height: 150});
 
   alert.loadFile('alert.html');
@@ -51,4 +52,6 @@ app.on('alert', function () {
   });
 });
 
+ipcMain.on('dismiss', function () {
 
+});
