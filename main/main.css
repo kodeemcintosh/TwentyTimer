@@ -1,0 +1,21 @@
+
+
+
+.main-btn {
+
+}
+.main-btn:hover {
+
+}
+.main-btn:disabled {
+
+}
+
+.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
